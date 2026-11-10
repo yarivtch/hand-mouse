@@ -5,21 +5,34 @@
 ## התקנה
 
 1. צריך Python 3.10 ומעלה (הכי בטוח: 3.11 או 3.12). ב-Windows מורידים מ-python.org ומסמנים בהתקנה "Add Python to PATH".
-2. שמים את כל הקבצים בתיקייה אחת, פותחים בה טרמינל ומריצים:
+2. שמים את כל הקבצים בתיקייה אחת.
+
+### Windows
+
+לוחצים פעמיים על `run_windows.bat`. בהפעלה הראשונה הוא יוצר סביבה וירטואלית בתיקייה `.venv`, מתקין לתוכה את התלויות ומפעיל. בפעמים הבאות הוא רק מפעיל.
+
+### macOS ו-Linux
+
+פותחים טרמינל בתיקייה ויוצרים סביבה וירטואלית (פעם אחת):
 
 ```
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-אל תתקין בנוסף `opencv-python`: ‏MediaPipe כבר מביא איתו גרסה של OpenCV, ושתיהן יחד מתנגשות.
+הסביבה הווירטואלית שומרת את התלויות בנפרד משאר המחשב. זה חשוב כאן: ‏MediaPipe מביא איתו גרסה של OpenCV, והיא מתנגשת עם `opencv-python` אם הוא מותקן גלובלית. מאותה סיבה אל תתקין `opencv-python` בנוסף.
 
 ## הפעלה
 
+ב-Windows: לחיצה כפולה על `run_windows.bat`. ב-macOS ו-Linux:
+
 ```
+source .venv/bin/activate
 python hand_mouse.py
 ```
 
-ב-Windows אפשר פשוט ללחוץ פעמיים על `run_windows.bat`. ב-macOS ו-Linux לפעמים צריך `python3`.
+להפעלה ידנית ב-Windows (למשל עם אפשרויות): `.venv\Scripts\activate` ואז `python hand_mouse.py`.
 בהפעלה הראשונה הסקריפט מוריד את מודל זיהוי היד (כ-8MB) ושומר אותו ליד הקובץ.
 
 נפתחים סרגל זכוכית צף בראש המסך וחלון מצלמה מעוגל בפינה (ראו `screenshot-draw.jpg` ו-`screenshot-board.jpg`).
